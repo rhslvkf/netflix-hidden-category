@@ -1,0 +1,31 @@
+<app-top-bar></app-top-bar>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let genre of genres | search : terms">
+      <!-- 첫화면, 상위 장르만 출력 -->
+      <ion-col *ngIf="terms == '' && genre.parent_id == parent_id && parent_id == 0">
+        <a routerLink="/genre/{{genre.id}}">{{ genre.name }}</a>
+      </ion-col>
+      <!-- 상위 장르 클릭시 해당 상위 장르의 하위 장르 출력(해당 상위 장르 포함) -->
+      <!-- <ion-col *ngIf="terms == '' && genre.parent_id == parent_id && parent_id != 0 || genre.id == parent_id" size="auto">
+        <ion-icon name="star-outline" (click)="addFavorite()"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="terms == '' && genre.parent_id == parent_id && parent_id != 0 || genre.id == parent_id">
+        <a href="https://www.netflix.com/browse/genre/{{genre.id}}">{{ genre.name }}</a>
+      </ion-col> -->
+      <!-- 검색 결과 출력 -->
+      <ion-col *ngIf="terms != ''" size="auto">
+          <ion-icon name="star-outline" (click)="addFavorite()"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="terms != ''">
+        <a href="https://www.netflix.com/browse/genre/{{genre.id}}">{{ genre.name }}</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

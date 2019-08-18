@@ -1,0 +1,19 @@
+<app-top-bar></app-top-bar>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>{{ topGenreName | translate }}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let genre of genres">
+      <ion-col size="auto">
+        <ion-icon name="star-outline" (click)="addFavorite()"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <a href="https://www.netflix.com/browse/genre/{{genre.id}}">{{ genre.name | translate }}</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
