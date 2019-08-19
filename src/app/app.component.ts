@@ -28,17 +28,16 @@ export class AppComponent {
     
   initializeApp() {
     this.platform.ready().then(() => {
-      this.setLang().then(() => {
-        this.statusBar.styleDefault();
-        this.splashScreen.hide();
-      });
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      this.setLang()
     });
   }
 
-  async setLang() {
-    await this.translate.setDefaultLang('ko');
+  setLang() {
+    this.translate.setDefaultLang('ko');
 
-    await this.globalization.getPreferredLanguage()
+    this.globalization.getPreferredLanguage()
       .then(res => res.value === 'ko-KR' ? this.translate.use('ko') : this.translate.use('en'))
       .catch(e => console.log(e));
   }

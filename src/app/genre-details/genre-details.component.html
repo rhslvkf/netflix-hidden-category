@@ -9,7 +9,8 @@
     </ion-row>
     <ion-row *ngFor="let genre of genres">
       <ion-col size="auto">
-        <ion-icon name="star-outline" (click)="addFavorite()"></ion-icon>
+        <ion-icon *ngIf="!genre.favorite_flag" name="star-outline" (click)="addFavorite(genre)"></ion-icon>
+        <ion-icon *ngIf="genre.favorite_flag" name="star" (click)="removeFavorite(genre)"></ion-icon>
       </ion-col>
       <ion-col>
         <a href="https://www.netflix.com/browse/genre/{{genre.id}}">{{ genre.name | translate }}</a>

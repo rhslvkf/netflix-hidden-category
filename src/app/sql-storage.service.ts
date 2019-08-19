@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Injectable, EventEmitter } from '@angular/core';
+
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 import { CREATE_TABLE_QUERY, INSERT_INIT_QUERY } from './query';
@@ -10,15 +10,14 @@ import { CREATE_TABLE_QUERY, INSERT_INIT_QUERY } from './query';
 export class SqlStorageService {
   storage: any;
   DB_NAME: string = 'netflix-hidden-category.db';
+  setDatabaseState: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(public platform: Platform, public sqlite: SQLite) {
-    this.platform.ready().then(() => {
-      this.sqlite.create({
-        name: this.DB_NAME, location: 'default'
-      }).then((db: SQLiteObject) => {
-        this.storage = db;
-        this.tryInit();
-      });
+  constructor(public sqlite: SQLite) {
+    this.sqlite.create({
+      name: this.DB_NAME, location: 'default'
+    }).then((db: SQLiteObject) => {
+      this.storage = db;
+      this.tryInit();
     });
   }
 
@@ -26,7 +25,9 @@ export class SqlStorageService {
     this.query(CREATE_TABLE_QUERY)
     .then(() => {
       this.query(INSERT_INIT_QUERY)
-      .then()
+      .then(() => {
+        this.setDatabaseState.emit();
+      })
       .catch(err => {
         console.error('Unable to insert initial data', err.tx, err.err);
       });

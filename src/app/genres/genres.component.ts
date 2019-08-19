@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Platform } from '@ionic/angular';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { SqlStorageService } from '../sql-storage.service';
+import { FavoriteService } from '../favorite.service';
 import { genres } from '../genres';
 
 @Component({
@@ -15,22 +19,35 @@ export class GenresComponent implements OnInit {
   terms: string = "";
   genres = [];
 
-  constructor(public sqlStorageService: SqlStorageService, private translate: TranslateService) {}
-  
-  ngOnInit() {
-    // develop code
-    this.translateGenres();
+  constructor(
+    public sqlStorageService: SqlStorageService,
+    private translate: TranslateService,
+    private favoriteService: FavoriteService,
+    private route: ActivatedRoute,
+    public platform: Platform
+  ) { }
 
-    // deploy code
-    // setTimeout(() => {
-    //   this.selectAllGenres();
-    // }, 1000);
+  ngOnInit() {
+    this.sqlStorageService.setDatabaseState.subscribe(() => {
+      this.selectAllGenres();
+    });
+
+    let initFlag = true;
+    this.route.paramMap.subscribe(() => {
+      this.genres = [];
+      // develop code
+      // this.translateGenres();
+      
+      // deploy code
+      if (!initFlag) this.selectAllGenres();
+      initFlag = false;
+    });
   }
 
   translateGenres() {
     for (let i = 0; i < genres.length; i++) {
       this.translate.get(genres[i].name).subscribe((res: string) => {
-        this.genres.push({id: genres[i].id, name: res, parent_id: genres[i].parent_id});
+        this.genres.push({id: genres[i].id, name: res, parent_id: genres[i].parent_id, favorite_flag: genres[i].favorite_flag});
       });
     }
   }
@@ -41,7 +58,7 @@ export class GenresComponent implements OnInit {
       for (let i = 0; i < data.res.rows.length; i++) {
         genre = data.res.rows.item(i);
         this.translate.get(genre.name).subscribe((res: string) => {
-          this.genres.push({id: genre.id, name: res, parent_id: genre.parent_id});
+          this.genres.push({id: genre.id, name: res, parent_id: genre.parent_id, favorite_flag: genre.favorite_flag});
         });
       }
     }).catch(err => {
@@ -51,5 +68,13 @@ export class GenresComponent implements OnInit {
 
   changeParentId(parent_id) {
     this.parent_id = parent_id;
+  }
+
+  addFavorite(genre): void {
+    this.favoriteService.addFavorite(genre);
+  }
+
+  removeFavorite(genre): void {
+    this.favoriteService.removeFavorite(genre);
   }
 }
