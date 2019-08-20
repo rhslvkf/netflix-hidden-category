@@ -1,3 +1,107 @@
+export const favorite_genres = [
+    {
+        name: 'Action & Adventure',
+        id: 1365,
+        parent_id: 0,
+        favorite_flag: 1
+    },
+    {
+        name: 'Asian Action Movies',
+        id: 77232,
+        parent_id: 1365,
+        favorite_flag: 1
+    },
+    {
+        name: 'Classic Action & Adventure',
+        id: 46576,
+        parent_id: 1365,
+        favorite_flag: 1
+    }
+]
+
+export const top_genre_name = 'Action & Adventure';
+
+export const genre_details = [
+    {
+        name: 'Action & Adventure',
+        id: 1365,
+        parent_id: 0,
+        favorite_flag: 0
+    },
+    {
+        name: 'Asian Action Movies',
+        id: 77232,
+        parent_id: 1365,
+        favorite_flag: 1
+    },
+    {
+        name: 'Classic Action & Adventure',
+        id: 46576,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Action Comedies',
+        id: 43040,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Action Thrillers',
+        id: 43048,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Adventures',
+        id: 7442,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Comic Book and Superhero Movies',
+        id: 10118,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Westerns',
+        id: 7700,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Spy Action & Adventure',
+        id: 10702,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Crime Action & Adventure',
+        id: 9584,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Foreign Action & Adventure',
+        id: 11828,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Martial Arts Movies',
+        id: 8985,
+        parent_id: 1365,
+        favorite_flag: 0
+    },
+    {
+        name: 'Military Action & Adventure',
+        id: 2125,
+        parent_id: 1365,
+        favorite_flag: 0
+    }
+]
+
 export const genres = [
     {
         name: 'Action & Adventure',

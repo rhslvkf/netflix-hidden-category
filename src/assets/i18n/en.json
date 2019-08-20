@@ -1,4 +1,6 @@
 {
+    "removeFavoriteTitle": "Delete favorite",
+    "removeFavoriteConfirmMsg": "Are you sure you want to delete from your favorites?",
     "addFavoriteMsg": "Added to favorites.",
     "removeFavoriteMsg": "Removed from your favorites",
     "Action & Adventure": "Action & Adventure",

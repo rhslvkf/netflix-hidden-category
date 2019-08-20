@@ -20,11 +20,11 @@ export class GenresComponent implements OnInit {
   genres = [];
 
   constructor(
-    public sqlStorageService: SqlStorageService,
+    private sqlStorageService: SqlStorageService,
     private translate: TranslateService,
     private favoriteService: FavoriteService,
     private route: ActivatedRoute,
-    public platform: Platform
+    private platform: Platform
   ) { }
 
   ngOnInit() {
@@ -34,6 +34,7 @@ export class GenresComponent implements OnInit {
 
     let initFlag = true;
     this.route.paramMap.subscribe(() => {
+      this.terms = "";
       this.genres = [];
       // develop code
       // this.translateGenres();

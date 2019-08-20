@@ -18,7 +18,7 @@ export class GenreDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public sqlStorageService: SqlStorageService,
+    private sqlStorageService: SqlStorageService,
     private favoriteService: FavoriteService,
     private translate: TranslateService
   ) { }
@@ -43,7 +43,7 @@ export class GenreDetailsComponent implements OnInit {
 
   selectGenresByParentId(parentId) {
     this.sqlStorageService.query('SELECT * FROM genres WHERE parent_id = ? OR id = ? ORDER BY name ASC', [parentId, parentId]).then(data => {
-      let genre;
+      let genre: any;
       for (let i = 0; i < data.res.rows.length; i++) {
         genre = data.res.rows.item(i);
         this.genres.push({id: genre.id, name: genre.name, parent_id: genre.parent_id, favorite_flag: genre.favorite_flag});

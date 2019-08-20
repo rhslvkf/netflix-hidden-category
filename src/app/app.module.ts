@@ -20,6 +20,7 @@ import { GenreDetailsComponent } from './genre-details/genre-details.component';
 import { SqlStorageService } from './sql-storage.service';
 import { SearchPipe } from './search.pipe';
 import { FormsModule } from '@angular/forms';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -31,6 +32,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     TopBarComponent,
     GenresComponent,
     GenreDetailsComponent,
+    FavoriteComponent,
     SearchPipe
   ],
   entryComponents: [],

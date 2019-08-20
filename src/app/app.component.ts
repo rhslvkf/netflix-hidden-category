@@ -7,8 +7,6 @@ import { Globalization } from '@ionic-native/globalization/ngx';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { SqlStorageService } from './sql-storage.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -20,8 +18,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
-    private globalization: Globalization,
-    public sqlStorageService: SqlStorageService
+    private globalization: Globalization
     ) {
       this.initializeApp();
     }

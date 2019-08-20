@@ -11,7 +11,6 @@ export class MyToastService {
   constructor(public toastController: ToastController) { }
 
   showToast(toastMessage) {
-    console.log('toastMessage : ' + toastMessage);
     this.toast = this.toastController.create({
       message: toastMessage,
       duration: 2000
