@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
 
 import { TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -19,8 +21,8 @@ import { GenresComponent } from './genres/genres.component';
 import { GenreDetailsComponent } from './genre-details/genre-details.component';
 import { SqlStorageService } from './sql-storage.service';
 import { SearchPipe } from './search.pipe';
-import { FormsModule } from '@angular/forms';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { AdmobFreeService } from './admob-free.service';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -56,7 +58,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
     Globalization,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SqlStorageService,
-    SQLite
+    SQLite,
+    AdMobFree,
+    AdmobFreeService
   ],
   bootstrap: [AppComponent]
 })

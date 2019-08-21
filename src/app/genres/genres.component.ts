@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Platform } from '@ionic/angular';
-
 import { TranslateService } from '@ngx-translate/core';
 
 import { SqlStorageService } from '../sql-storage.service';
 import { FavoriteService } from '../favorite.service';
 import { genres } from '../genres';
+import { AdmobFreeService } from '../admob-free.service';
 
 @Component({
   selector: 'app-genres',
@@ -24,10 +23,13 @@ export class GenresComponent implements OnInit {
     private translate: TranslateService,
     private favoriteService: FavoriteService,
     private route: ActivatedRoute,
-    private platform: Platform
+    private admobFreeService: AdmobFreeService
   ) { }
 
   ngOnInit() {
+    this.admobFreeService.interstitialAd();
+    this.admobFreeService.bannerAd();
+
     this.sqlStorageService.setDatabaseState.subscribe(() => {
       this.selectAllGenres();
     });
