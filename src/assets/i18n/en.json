@@ -1,4 +1,6 @@
 {
+    "notExistFavoritesMsg": "There are no favorites.",
+    "favorites": "Favorites",
     "exitAppMsg": "Press again to exit",
     "removeFavoriteTitle": "Delete favorite",
     "removeFavoriteConfirmMsg": "Are you sure you want to delete from your favorites?",

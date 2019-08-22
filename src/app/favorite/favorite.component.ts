@@ -89,4 +89,7 @@ export class FavoriteComponent implements OnInit {
     this.favoriteService.removeFavorite(genre);
   }
 
+  goToNetflixGenreUrl(genreId) {
+    location.href="https://www.netflix.com/browse/genre/" + genreId;
+  }
 }

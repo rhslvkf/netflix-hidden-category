@@ -24,3 +24,34 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.toolbar-background {
+    --background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
+}
+
+.genre-list {
+    padding: 10px 0px 10px 20px;
+    border-left: 5px solid #093145;
+    background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
+    font-weight: bold;
+    color: #093145;
+}
+
+.favorite-icon {
+    font-size: 20px;
+    float: right;
+    margin-right: 15px;
+    color: #c02f1d;
+}
+
+.remove-favorite-icon {
+    font-size: 20px;
+    float: right;
+    margin-right: 15px;
+    color: #c02f1d;
+}
+
+ion-title ion-col {
+    display: flex;
+    align-items: center;
+}

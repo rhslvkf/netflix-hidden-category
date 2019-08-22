@@ -14,6 +14,7 @@ import { AdmobFreeService } from '../admob-free.service';
   styleUrls: ['genres.component.scss'],
 })
 export class GenresComponent implements OnInit {
+  title = "Netflix Hidden Genres";
   parent_id = 0;
   terms: string = "";
   genres = [];
@@ -79,5 +80,9 @@ export class GenresComponent implements OnInit {
 
   removeFavorite(genre): void {
     this.favoriteService.removeFavorite(genre);
+  }
+
+  goToNetflixGenreUrl(genreId) {
+    location.href="https://www.netflix.com/browse/genre/" + genreId;
   }
 }

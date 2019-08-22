@@ -59,7 +59,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
   }
 
   setLang() {
-    this.translate.setDefaultLang('ko');
+    this.translate.setDefaultLang('en');
 
     this.globalization.getPreferredLanguage()
       .then(res => res.value === 'ko-KR' ? this.translate.use('ko') : this.translate.use('en'))

@@ -11,24 +11,22 @@ export class AdmobFreeService {
 
   interstitialAd() {
     let interstitialConfig: AdMobFreeInterstitialConfig = {
-      isTesting: true, // Remove in production
+      // isTesting: true, // Remove in production
       autoShow: true,
-      // id: "ca-app-pub-8843457940870268/7560079647"
+      id: "ca-app-pub-8843457940870268/7560079647"
     };
     this.admobFree.interstitial.config(interstitialConfig);
 
     this.admobFree.interstitial.prepare()
-      .then(() => {
-        console.log('success interstitial');
-      })
+      .then()
       .catch(e => console.log(e));
   }
 
   bannerAd() {
     let bannerConfig: AdMobFreeBannerConfig = {
-      isTesting: true, // Remove in production
+      // isTesting: true, // Remove in production
       autoShow: true,
-      // id: "ca-app-pub-8843457940870268/5778140401"
+      id: "ca-app-pub-8843457940870268/5778140401"
     };
     this.admobFree.banner.config(bannerConfig);
  

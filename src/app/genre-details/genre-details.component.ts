@@ -13,7 +13,7 @@ import { FavoriteService } from '../favorite.service';
   styleUrls: ['./genre-details.component.scss'],
 })
 export class GenreDetailsComponent implements OnInit {
-  topGenreName = '';
+  title = '';
   genres = [];
 
   constructor(
@@ -32,7 +32,7 @@ export class GenreDetailsComponent implements OnInit {
       //     this.genres.push({id: genres[i].id, name: genres[i].name, parent_id: genres[i].parent_id, favorite_flag: genres[i].favorite_flag});
       //   }
       //   if (genres[i].id == +params.get('genreId')) {
-      //     this.topGenreName = genres[i].name;
+      //     this.title = genres[i].name;
       //   }
       // }
 
@@ -49,7 +49,7 @@ export class GenreDetailsComponent implements OnInit {
         this.genres.push({id: genre.id, name: genre.name, parent_id: genre.parent_id, favorite_flag: genre.favorite_flag});
 
         if (genre.id == parentId) {
-          this.topGenreName = genre.name;
+          this.title = genre.name;
         }
       }
     }).catch(err => {
@@ -63,5 +63,9 @@ export class GenreDetailsComponent implements OnInit {
 
   removeFavorite(genre): void {
     this.favoriteService.removeFavorite(genre);
+  }
+
+  goToNetflixGenreUrl(genreId) {
+    location.href="https://www.netflix.com/browse/genre/" + genreId;
   }
 }

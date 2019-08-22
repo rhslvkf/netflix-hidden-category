@@ -1,23 +1,40 @@
-<app-top-bar></app-top-bar>
+<ion-header>
+  <ion-toolbar class="toolbar-background">
+    <ion-title>
+      <ion-row>
+        <ion-col size="auto">
+          <a [routerLink]="['/']"><ion-icon name="home" style="color: white; font-size: 22px;"></ion-icon></a>
+        </ion-col>
+        <ion-col>
+          <div style="font-weight: bold; font-size: 17px; padding-left: 10px; color: white;">{{ 'favorites' | translate }}</div>
+        </ion-col>
+        <ion-col size="auto">
+            <a [routerLink]="['/favorite']"><ion-icon name="star" style="color: white; font-size: 22px;"></ion-icon></a>
+        </ion-col>
+      </ion-row>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content padding>
   <ion-grid>
     <ion-row *ngFor="let genre of genres">
-      <ion-col size="auto">
-        <ion-icon name="remove-circle" (click)="removeFavoriteConfirm(genre)"></ion-icon>
-      </ion-col>
       <ion-col>
-        <a href="https://www.netflix.com/browse/genre/{{genre.id}}">{{ genre.name | translate }}</a>
+        <div class="genre-list">
+          <span (click)="goToNetflixGenreUrl(genre.id)">{{ genre.name | translate }}</span>
+          <ion-icon class="remove-favorite-icon" name="remove-circle" (click)="removeFavoriteConfirm(genre)"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="genres.length == 0">
+      <ion-col>
+        <div>{{ 'notExistFavoritesMsg' | translate }}</div>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="genres.length == 0">
       <ion-col>
-        <div>Favorite없다</div>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="genres.length == 0">
-      <ion-col>
-        <a [routerLink]="['/']">Home</a>
+        <ion-button color="tertiary" [routerLink]="['/']">Home</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="toolbar-background">
     <ion-title>
       <ion-row>
         <ion-col size="auto">
-          <a [routerLink]="['/']">Home</a>
+          <a [routerLink]="['/']"><ion-icon name="home" style="color: white; font-size: 22px;"></ion-icon></a>
         </ion-col>
         <ion-col>
-          Netflix Hidden Genres
+          <div style="font-weight: bold; font-size: 17px; padding-left: 10px; color: white;">{{ title }}</div>
         </ion-col>
         <ion-col size="auto">
-            <a [routerLink]="['/favorite']">Favorite</a>
+            <a [routerLink]="['/favorite']"><ion-icon name="star" style="color: white; font-size: 22px;"></ion-icon></a>
         </ion-col>
       </ion-row>
     </ion-title>
