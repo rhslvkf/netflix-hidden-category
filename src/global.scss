@@ -30,25 +30,30 @@
 }
 
 .genre-list {
-    padding: 10px 0px 10px 20px;
     border-left: 5px solid #093145;
     background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
     font-weight: bold;
     color: #093145;
 }
 
+.genre-list span {
+    display: inline-block;
+    padding: 10px 0px 10px 20px;
+    width: 85%;
+}
+
 .favorite-icon {
     font-size: 20px;
-    float: right;
-    margin-right: 15px;
     color: #c02f1d;
+    width: 15%;
+    vertical-align: middle;
 }
 
 .remove-favorite-icon {
     font-size: 20px;
-    float: right;
-    margin-right: 15px;
     color: #c02f1d;
+    width: 15%;
+    vertical-align: middle;
 }
 
 ion-title ion-col {
