@@ -9,6 +9,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { favorite_genres } from '../genres';
 import { SqlStorageService } from '../sql-storage.service';
 import { FavoriteService } from '../favorite.service';
+import { AdmobFreeService } from '../admob-free.service';
 
 @Component({
   selector: 'app-favorite',
@@ -26,7 +27,8 @@ export class FavoriteComponent implements OnInit {
     private alertController: AlertController,
     private sqlStorageService: SqlStorageService,
     private favoriteService: FavoriteService,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private admobFreeService: AdmobFreeService
   ) {
     this.setTranslate();
   }
@@ -96,12 +98,20 @@ export class FavoriteComponent implements OnInit {
   }
 
   shareApp() {
-    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres');
+    this.admobFreeService.hideBannerAd();
+    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
+      .then(() => {
+        this.admobFreeService.showBannerAd();
+      });
   }
 
   shareContent(genre) {
+    this.admobFreeService.hideBannerAd();
     this.translate.get(genre.name).subscribe((res: string) => {
-      this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', res, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres');
+      this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', res, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
+        .then(() => {
+          this.admobFreeService.showBannerAd();
+        });
     });
   }
 }

@@ -34,4 +34,12 @@ export class AdmobFreeService {
       .then()
       .catch(e => console.log(e));
   }
+
+  hideBannerAd() {
+    this.admobFree.banner.hide();
+  }
+
+  showBannerAd() {
+    this.admobFree.banner.show();
+  }
 }

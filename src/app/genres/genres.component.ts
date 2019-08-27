@@ -90,10 +90,18 @@ export class GenresComponent implements OnInit {
   }
 
   shareApp() {
-    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres');
+    this.admobFreeService.hideBannerAd();
+    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
+      .then(() => {
+        this.admobFreeService.showBannerAd();
+      });
   }
 
   shareContent(genre) {
-    this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', genre.name, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres');
+    this.admobFreeService.hideBannerAd();
+    this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', genre.name, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
+      .then(() => {
+        this.admobFreeService.showBannerAd();
+      });
   }
 }
