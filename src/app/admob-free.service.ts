@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free/ngx';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free/ngx';
 
 @Injectable({
   providedIn: 'root'

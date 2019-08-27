@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 import { TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -60,7 +61,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     SqlStorageService,
     SQLite,
     AdMobFree,
-    AdmobFreeService
+    AdmobFreeService,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })

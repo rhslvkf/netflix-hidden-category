@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 import { TranslateService } from '@ngx-translate/core';
 
 import { genres } from '../genres';
@@ -20,7 +22,8 @@ export class GenreDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private sqlStorageService: SqlStorageService,
     private favoriteService: FavoriteService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private socialSharing: SocialSharing
   ) { }
 
   ngOnInit() {
@@ -67,5 +70,15 @@ export class GenreDetailsComponent implements OnInit {
 
   goToNetflixGenreUrl(genreId) {
     location.href="https://www.netflix.com/browse/genre/" + genreId;
+  }
+
+  shareApp() {
+    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres');
+  }
+
+  shareContent(genre) {
+    this.translate.get(genre.name).subscribe((res: string) => {
+      this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', res, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres');
+    });
   }
 }

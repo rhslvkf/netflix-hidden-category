@@ -52,7 +52,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
       this.splashScreen.hide();
       this.setLang();
     });

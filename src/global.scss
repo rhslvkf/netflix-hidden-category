@@ -34,29 +34,41 @@
     background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
     font-weight: bold;
     color: #093145;
+    display: flex;
+    align-items: center;
+    align-content: center;
 }
 
 .genre-list span {
     display: inline-block;
     padding: 10px 0px 10px 20px;
-    width: 85%;
+    width: 80%;
 }
 
 .favorite-icon {
     font-size: 20px;
     color: #c02f1d;
-    width: 15%;
-    vertical-align: middle;
+    width: 10%;
+}
+
+.share-icon {
+    font-size: 20px;
+    color: #c02f1d;
+    width: 10%;
 }
 
 .remove-favorite-icon {
     font-size: 20px;
     color: #c02f1d;
-    width: 15%;
-    vertical-align: middle;
+    width: 10%;
 }
 
 ion-title ion-col {
     display: flex;
     align-items: center;
+}
+
+ion-header ion-icon {
+    color: white;
+    font-size: 22px;
 }
