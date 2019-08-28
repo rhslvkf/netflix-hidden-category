@@ -72,3 +72,27 @@ ion-header ion-icon {
     color: white;
     font-size: 22px;
 }
+
+.alert-head {
+    background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
+}
+
+.netflix-button, .share-button, .favorite-button {
+    width: 75px;
+    background-color: steelblue !important;
+    color: #fff !important;
+    font-size: 15px !important;
+}
+
+.netflix-button span, .share-button span, .favorite-button span {
+    justify-content: center !important;
+}
+
+.favorite-button {
+    margin-right: 0px !important;
+}
+
+.alert-button-group {
+    flex-direction: row !important;
+    padding: 15px !important;
+}

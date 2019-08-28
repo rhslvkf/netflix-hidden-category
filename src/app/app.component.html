@@ -1,3 +1,32 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="first" contentId="content1">
+    <ion-header>
+      <ion-toolbar class="toolbar-background">
+        <ion-title style="font-weight: bold; font-size: 17px; color: white;">Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="['/genres']" routerDirection="forward">
+            <ion-icon name="home" slot="start"></ion-icon>
+            Home
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="['/favorite']" routerDirection="forward">
+            <ion-icon name="star" slot="start"></ion-icon>
+            Favorites
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item (click)="shareApp()">
+            <ion-icon name="share" slot="start"></ion-icon>
+            Share
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content1"></ion-router-outlet>
 </ion-app>

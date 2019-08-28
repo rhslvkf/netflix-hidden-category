@@ -5,10 +5,12 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Globalization } from '@ionic-native/globalization/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { MyToastService } from './my-toast.service';
+import { AdmobFreeService } from './admob-free.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +28,9 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     private translate: TranslateService,
     private globalization: Globalization,
     private myToastService: MyToastService,
-    private router: Router
+    private router: Router,
+    private admobFreeService: AdmobFreeService,
+    private socialSharing: SocialSharing
     ) {
       this.initializeApp();
     }
@@ -64,5 +68,13 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     this.globalization.getPreferredLanguage()
       .then(res => res.value === 'ko-KR' ? this.translate.use('ko') : this.translate.use('en'))
       .catch(e => console.log(e));
+  }
+
+  shareApp() {
+    this.admobFreeService.removeBannerAd();
+    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
+      .then(() => {
+        this.admobFreeService.bannerAd();
+      });
   }
 }

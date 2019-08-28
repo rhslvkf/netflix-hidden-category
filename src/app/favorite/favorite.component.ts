@@ -97,20 +97,12 @@ export class FavoriteComponent implements OnInit {
     location.href="https://www.netflix.com/browse/genre/" + genreId;
   }
 
-  shareApp() {
-    this.admobFreeService.hideBannerAd();
-    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
-      .then(() => {
-        this.admobFreeService.showBannerAd();
-      });
-  }
-
   shareContent(genre) {
-    this.admobFreeService.hideBannerAd();
+    this.admobFreeService.removeBannerAd();
     this.translate.get(genre.name).subscribe((res: string) => {
       this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', res, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
         .then(() => {
-          this.admobFreeService.showBannerAd();
+          this.admobFreeService.bannerAd();
         });
     });
   }
