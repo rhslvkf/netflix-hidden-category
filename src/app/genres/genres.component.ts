@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ModalController } from '@ionic/angular';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { SqlStorageService } from '../sql-storage.service';
-import { FavoriteService } from '../favorite.service';
 import { genres } from '../genres';
 import { AdmobFreeService } from '../admob-free.service';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-genres',
@@ -24,10 +24,9 @@ export class GenresComponent implements OnInit {
   constructor(
     private sqlStorageService: SqlStorageService,
     private translate: TranslateService,
-    private favoriteService: FavoriteService,
     private route: ActivatedRoute,
     private admobFreeService: AdmobFreeService,
-    private socialSharing: SocialSharing
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -77,23 +76,17 @@ export class GenresComponent implements OnInit {
     this.parent_id = parent_id;
   }
 
-  addFavorite(genre): void {
-    this.favoriteService.addFavorite(genre);
-  }
+  async openModal(genre) {
+    const modal = await this.modalController.create({
+      showBackdrop: true,
+      backdropDismiss: true,
+      cssClass: 'genre-modal',
+      component: ModalPage,
+      componentProps: {
+        'genre': genre
+      }
+    });
 
-  removeFavorite(genre): void {
-    this.favoriteService.removeFavorite(genre);
-  }
-
-  goToNetflixGenreUrl(genreId) {
-    location.href="https://www.netflix.com/browse/genre/" + genreId;
-  }
-
-  shareContent(genre) {
-    this.admobFreeService.removeBannerAd();
-    this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', genre.name, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
-      .then(() => {
-        this.admobFreeService.bannerAd();
-      });
+    return await modal.present();
   }
 }

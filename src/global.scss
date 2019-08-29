@@ -96,3 +96,22 @@ ion-header ion-icon {
     flex-direction: row !important;
     padding: 15px !important;
 }
+
+.genre-modal {
+    --height: auto;
+    --min-height: 282px;
+    --width: 80%;
+    --border-radius: 5px;
+}
+
+ion-title {
+    font-weight: bold;
+    font-size: 17px;
+    color: white;
+}
+
+.modal-content ion-button {
+    --background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
+    color: royalblue;
+    font-weight: bold;
+}

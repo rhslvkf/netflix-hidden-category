@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar class="toolbar-background">
+    <ion-title>{{ genre.name | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="goToNetflixGenreUrl(genre.id)">
+          <ion-icon slot="start" name="play"></ion-icon>
+          Netflix
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="shareContent(genre)">
+          <ion-icon slot="start" name="share"></ion-icon>
+          Share
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button *ngIf="!genre.favorite_flag" expand="block" (click)="addFavorite()">
+          <ion-icon slot="start" name="star-outline"></ion-icon>
+          Favorite
+        </ion-button>
+        <ion-button *ngIf="genre.favorite_flag" expand="block" (click)="removeFavorite()">
+          <ion-icon slot="start" name="star"></ion-icon>
+          Favorite
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="dismiss()">
+          <ion-icon slot="start" name="close"></ion-icon>
+          Close
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

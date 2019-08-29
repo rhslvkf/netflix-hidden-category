@@ -50,6 +50,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
       }
     });
   }
+
   ngOnDestroy() {
     this.backButtonSubscription.unsubscribe();
   }
@@ -76,5 +77,9 @@ export class AppComponent implements OnDestroy, AfterViewInit {
       .then(() => {
         this.admobFreeService.bannerAd();
       });
+  }
+
+  interstitialAd() {
+    this.admobFreeService.interstitialAd();
   }
 }

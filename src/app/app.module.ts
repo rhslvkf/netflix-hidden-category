@@ -24,6 +24,7 @@ import { SqlStorageService } from './sql-storage.service';
 import { SearchPipe } from './search.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { AdmobFreeService } from './admob-free.service';
+import { ModalPage } from './modal/modal.page';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -36,9 +37,10 @@ export function createTranslateLoader(httpClient: HttpClient) {
     GenresComponent,
     GenreDetailsComponent,
     FavoriteComponent,
-    SearchPipe
+    SearchPipe,
+    ModalPage
   ],
-  entryComponents: [],
+  entryComponents: [ModalPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

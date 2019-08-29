@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'genres', pathMatch: 'full' },
   { path: 'genres', component: GenresComponent },
   { path: 'genre/:genreId', component: GenreDetailsComponent },
-  { path: 'favorite', component: FavoriteComponent }
+  { path: 'favorite', component: FavoriteComponent },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' }
 ];
 
 @NgModule({

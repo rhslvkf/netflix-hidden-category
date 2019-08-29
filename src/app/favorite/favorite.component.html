@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="font-weight: bold; font-size: 17px; color: white;">
+    <ion-title>
       {{ 'favorites' | translate }}
     </ion-title>
   </ion-toolbar>
@@ -14,9 +14,7 @@
     <ion-row *ngFor="let genre of genres">
       <ion-col>
         <div class="genre-list">
-          <span (click)="goToNetflixGenreUrl(genre.id)">{{ genre.name | translate }}</span>
-          <ion-icon class="share-icon" name="share" (click)="shareContent(genre)"></ion-icon>
-          <ion-icon class="remove-favorite-icon" name="remove-circle" (click)="removeFavoriteConfirm(genre)"></ion-icon>
+          <span (click)="openModal(genre)">{{ genre.name | translate }}</span>
         </div>
       </ion-col>
     </ion-row>

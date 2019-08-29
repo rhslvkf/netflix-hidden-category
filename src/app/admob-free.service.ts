@@ -18,7 +18,7 @@ export class AdmobFreeService {
     this.admobFree.interstitial.config(interstitialConfig);
 
     this.admobFree.interstitial.prepare()
-      .then()
+      .then(() => {console.log('success interstitialAd')})
       .catch(e => console.log(e));
   }
 
@@ -31,7 +31,7 @@ export class AdmobFreeService {
     this.admobFree.banner.config(bannerConfig);
  
     this.admobFree.banner.prepare()
-      .then()
+      .then(() => {console.log('success bannerAd')})
       .catch(e => console.log(e));
   }
 

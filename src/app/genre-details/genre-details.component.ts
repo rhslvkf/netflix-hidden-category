@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-
-import { TranslateService } from '@ngx-translate/core';
+import { ModalController } from '@ionic/angular';
 
 import { genres } from '../genres';
 import { SqlStorageService } from '../sql-storage.service';
-import { FavoriteService } from '../favorite.service';
-import { AdmobFreeService } from '../admob-free.service';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-genre-details',
@@ -22,10 +19,7 @@ export class GenreDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sqlStorageService: SqlStorageService,
-    private favoriteService: FavoriteService,
-    private translate: TranslateService,
-    private socialSharing: SocialSharing,
-    private admobFreeService: AdmobFreeService
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -62,33 +56,17 @@ export class GenreDetailsComponent implements OnInit {
     });
   }
 
-  addFavorite(genre): void {
-    this.favoriteService.addFavorite(genre);
-  }
-
-  removeFavorite(genre): void {
-    this.favoriteService.removeFavorite(genre);
-  }
-
-  goToNetflixGenreUrl(genreId) {
-    location.href="https://www.netflix.com/browse/genre/" + genreId;
-  }
-
-  shareApp() {
-    this.admobFreeService.removeBannerAd();
-    this.socialSharing.share('', '', '', 'https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
-      .then(() => {
-        this.admobFreeService.bannerAd();
-      });
-  }
-
-  shareContent(genre) {
-    this.admobFreeService.removeBannerAd();
-    this.translate.get(genre.name).subscribe((res: string) => {
-      this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', res, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
-        .then(() => {
-          this.admobFreeService.bannerAd();
-        });
+  async openModal(genre) {
+    const modal = await this.modalController.create({
+      showBackdrop: true,
+      backdropDismiss: true,
+      cssClass: 'genre-modal',
+      component: ModalPage,
+      componentProps: {
+        'genre': genre
+      }
     });
+
+    return await modal.present();
   }
 }

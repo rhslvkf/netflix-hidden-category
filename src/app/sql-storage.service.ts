@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+import { Platform } from '@ionic/angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 import { CREATE_TABLE_QUERY, INSERT_INIT_QUERY } from './query';
@@ -12,12 +13,14 @@ export class SqlStorageService {
   DB_NAME: string = 'netflix-hidden-category.db';
   setDatabaseState: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(public sqlite: SQLite) {
-    this.sqlite.create({
-      name: this.DB_NAME, location: 'default'
-    }).then((db: SQLiteObject) => {
-      this.storage = db;
-      this.tryInit();
+  constructor(public sqlite: SQLite, private platform: Platform) {
+    this.platform.ready().then(() => {
+      this.sqlite.create({
+        name: this.DB_NAME, location: 'default'
+      }).then((db: SQLiteObject) => {
+        this.storage = db;
+        this.tryInit();
+      });
     });
   }
 

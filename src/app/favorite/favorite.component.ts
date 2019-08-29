@@ -3,13 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { AlertController } from '@ionic/angular';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ModalController } from '@ionic/angular';
 
 import { favorite_genres } from '../genres';
 import { SqlStorageService } from '../sql-storage.service';
-import { FavoriteService } from '../favorite.service';
-import { AdmobFreeService } from '../admob-free.service';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-favorite',
@@ -24,11 +22,8 @@ export class FavoriteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private translate: TranslateService,
-    private alertController: AlertController,
     private sqlStorageService: SqlStorageService,
-    private favoriteService: FavoriteService,
-    private socialSharing: SocialSharing,
-    private admobFreeService: AdmobFreeService
+    private modalController: ModalController
   ) {
     this.setTranslate();
   }
@@ -63,47 +58,18 @@ export class FavoriteComponent implements OnInit {
     });
   }
 
-  async removeFavoriteConfirm(genre) {
-    const alert = await this.alertController.create({
-      header: this.removeFavoriteTitle,
-      message: this.removeFavoriteConfirmMsg,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Okay',
-          handler: () => {
-            this.removeFavorite(genre);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
-  removeFavorite(genre) {
-    for (let i = 0; i < this.genres.length; i++) {
-      if (this.genres[i].id == genre.id) {
-        this.genres.splice(i, 1);
+  async openModal(genre) {
+    const modal = await this.modalController.create({
+      showBackdrop: true,
+      backdropDismiss: true,
+      cssClass: 'genre-modal',
+      component: ModalPage,
+      componentProps: {
+        'genre': genre,
+        'genres': this.genres
       }
-    }
-
-    this.favoriteService.removeFavorite(genre);
-  }
-
-  goToNetflixGenreUrl(genreId) {
-    location.href="https://www.netflix.com/browse/genre/" + genreId;
-  }
-
-  shareContent(genre) {
-    this.admobFreeService.removeBannerAd();
-    this.translate.get(genre.name).subscribe((res: string) => {
-      this.socialSharing.share('https://www.netflix.com/browse/genre/' + genre.id + '\n\n', res, '', 'Netflix Hidden Genres - https://play.google.com/store/apps/details?id=com.rhslvkf.netflixhiddengenres')
-        .then(() => {
-          this.admobFreeService.bannerAd();
-        });
     });
+
+    return await modal.present();
   }
 }

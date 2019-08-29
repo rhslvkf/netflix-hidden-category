@@ -8,13 +8,13 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle auto-hide="true">
-          <ion-item [routerLink]="['/genres']" routerDirection="forward">
+          <ion-item [routerLink]="['/genres']" routerDirection="forward" (click)="interstitialAd()">
             <ion-icon name="home" slot="start"></ion-icon>
             Home
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle auto-hide="true">
-          <ion-item [routerLink]="['/favorite']" routerDirection="forward">
+          <ion-item [routerLink]="['/favorite']" routerDirection="forward" (click)="interstitialAd()">
             <ion-icon name="star" slot="start"></ion-icon>
             Favorites
           </ion-item>
